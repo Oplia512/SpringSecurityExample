@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.LoginData;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class DemoRestController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/user")
     public List<User> getUsers() {
-        return userService.finfAll();
+        return userService.findAll();
     }
 
 }

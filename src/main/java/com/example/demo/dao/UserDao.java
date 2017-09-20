@@ -4,6 +4,7 @@ package com.example.demo.dao;
 import com.example.demo.model.User;
 import com.example.demo.model.UserFields;
 import lombok.NonNull;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
@@ -24,12 +25,15 @@ public class UserDao {
         return Optional.ofNullable(mongoTemplate.findOne(query(where(UserFields.USER_NAME.field()).is(username)), User.class));
     }
 
-    public List<User> findAll(){
-        return mongoTemplate.findAll(User.class);
+    public Optional<List<User>> findAll(){
+        return Optional.ofNullable(mongoTemplate.findAll(User.class));
     }
 
     public void save(@NonNull User user) {
         mongoTemplate.save(user);
     }
 
+    public Optional<User> findById(@NonNull ObjectId id) {
+        return Optional.ofNullable(mongoTemplate.findById(id, User.class));
+    }
 }
